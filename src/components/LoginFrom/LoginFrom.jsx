@@ -10,12 +10,7 @@ const LoginFrom = () => {
   const [loginUser] = useLogInMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       email: '',
       password: '',

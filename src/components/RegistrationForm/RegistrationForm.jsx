@@ -11,12 +11,7 @@ const RegistrationForm = () => {
   const [createUser] = useSigUpMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       name: '',
       email: '',
