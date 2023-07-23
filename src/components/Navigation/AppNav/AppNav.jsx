@@ -1,7 +1,7 @@
-import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
 import UserMenu from '../UserMenu/';
 
 import { NavLinkWrap, Counter, Header, Nav } from '../Navigation.styled';
+import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
 
 const AppNav = () => {
   const { data } = useGetContactsQuery();

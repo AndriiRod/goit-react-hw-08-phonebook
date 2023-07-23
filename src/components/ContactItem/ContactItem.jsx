@@ -13,12 +13,12 @@ import {
 
 import placeholder from '../../images/placeholder.png';
 
-const ContactItem = ({ id, name, number, avatar }) => {
+const ContactItem = ({ id, name, number }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   return (
     <Item>
-      <Img src={avatar ? avatar : placeholder} alt="avatar" />
+      <Img src={placeholder} alt="avatar" />
       <TextWrap>
         <Name>{name}</Name>
         <Number>{number}</Number>

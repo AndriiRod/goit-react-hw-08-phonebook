@@ -2,12 +2,13 @@ import { nanoid } from 'nanoid';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
-import {
-  useAddContactsMutation,
-  useGetContactsQuery,
-} from 'redux/contacts/contactsSlice';
 
 import schema from '../../validation/schema';
+
+import {
+  useGetContactsQuery,
+  useAddContactsMutation,
+} from 'redux/contacts/contactsSlice';
 
 import {
   Form,

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
 
 import ContactItem from 'components/ContactItem/';
 import Loader from 'components/Loader/Loader';
@@ -10,6 +9,7 @@ import Loader from 'components/Loader/Loader';
 import { selectFilter } from 'redux/selectors';
 
 import { List } from './ContactsList.styled';
+import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
 
 const ContactsList = () => {
   const filter = useSelector(selectFilter);
@@ -36,14 +36,8 @@ const ContactsList = () => {
       {error && toast.error(error.message)}
       {visibleContact?.length !== 0 && (
         <List>
-          {visibleContact?.map(({ id, name, number, avatar }) => (
-            <ContactItem
-              key={id}
-              id={id}
-              name={name}
-              number={number}
-              avatar={avatar}
-            />
+          {visibleContact?.map(({ id, name, number }) => (
+            <ContactItem key={id} id={id} name={name} number={number} />
           ))}
         </List>
       )}

@@ -10,27 +10,32 @@ import Registration from 'pages/Registration';
 import Login from 'pages/Login';
 import Home from 'pages/Home';
 
-import { useGetCurrentUserQuery } from 'redux/auth';
-
 import { Container } from './App.styled';
+import PrivateRouter from 'components/PrivateRoute';
+import PublicRouter from 'components/PublicRouter';
 
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { selectToken } from 'redux/auth/tokenSlice';
 
 const App = () => {
   const token = useSelector(selectToken);
-  const { data } = useGetCurrentUserQuery(null, { skip: !token });
 
   return (
     <Container>
-      {data && <AppNav />}
-
+      {token && <AppNav />}
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/reg" element={<Registration />} />
-        <Route path="/log" element={<Login />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/addContact" element={<AddContact />} />
+        <Route element={<PublicRouter restricted />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/reg" element={<Registration />} />
+          <Route path="/log" element={<Login />} />
+        </Route>
+
+        <Route element={<PrivateRouter />}>
+          <Route path="/contacts" element={<Contacts />} />
+        </Route>
+        <Route element={<PrivateRouter />}>
+          <Route path="/addContact" element={<AddContact />} />
+        </Route>
       </Routes>
       <ToastContainer theme="colored" />
     </Container>

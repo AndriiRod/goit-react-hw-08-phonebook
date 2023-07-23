@@ -11,8 +11,8 @@ export const authApi = createApi({
       }
       return headers;
     },
-    tagTypes: ['auth'],
   }),
+  tagTypes: ['auth'],
   endpoints: builder => ({
     sigUp: builder.mutation({
       query: data => ({
@@ -32,8 +32,9 @@ export const authApi = createApi({
     }),
     getCurrentUser: builder.query({
       query: _ => '/users/current',
+      providesTags: ['auth'],
     }),
-    providesTags: ['auth'],
+
     logOut: builder.mutation({
       query: _ => ({
         url: '/users/logout',
