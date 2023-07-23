@@ -11,12 +11,14 @@ const authToken = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
-    logOut: state => {
+    logOutLocal: state => {
       state.token = null;
     },
   },
 });
 
-export const { setToken, logOut } = authToken.actions;
+export const { setToken, logOutLocal } = authToken.actions;
+
+export const selectToken = state => state.authToken.token;
 
 export default authToken.reducer;

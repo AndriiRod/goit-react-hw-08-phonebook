@@ -11,6 +11,7 @@ export const authApi = createApi({
       }
       return headers;
     },
+    tagTypes: ['auth'],
   }),
   endpoints: builder => ({
     sigUp: builder.mutation({
@@ -19,6 +20,7 @@ export const authApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['auth'],
     }),
     logIn: builder.mutation({
       query: data => ({
@@ -26,12 +28,25 @@ export const authApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['auth'],
     }),
     getCurrentUser: builder.query({
       query: _ => '/users/current',
     }),
+    providesTags: ['auth'],
+    logOut: builder.mutation({
+      query: _ => ({
+        url: '/users/logout',
+        method: 'POST',
+      }),
+      invalidatesTags: ['auth'],
+    }),
   }),
 });
 
-export const { useSigUpMutation, useLogInMutation, useGetCurrentUserQuery } =
-  authApi;
+export const {
+  useSigUpMutation,
+  useLogInMutation,
+  useGetCurrentUserQuery,
+  useLogOutMutation,
+} = authApi;

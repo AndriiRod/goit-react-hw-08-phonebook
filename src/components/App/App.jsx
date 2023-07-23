@@ -14,8 +14,13 @@ import { useGetCurrentUserQuery } from 'redux/auth';
 
 import { Container } from './App.styled';
 
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { selectToken } from 'redux/auth/tokenSlice';
+
 const App = () => {
-  const { data } = useGetCurrentUserQuery();
+  const token = useSelector(selectToken);
+  const { data } = useGetCurrentUserQuery(null, { skip: !token });
+
   return (
     <Container>
       {data && <AppNav />}
