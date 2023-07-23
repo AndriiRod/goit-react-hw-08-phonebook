@@ -38,7 +38,7 @@ const AddContactForm = () => {
   const inputNameId = nanoid(6);
   const inputNumberId = nanoid(6);
 
-  const handleSubmitForm = data => {
+  const handleSubmitForm = async data => {
     const { name } = data;
     const matches = contacts.find(item => item.name === name);
     if (matches) {
@@ -47,9 +47,13 @@ const AddContactForm = () => {
       );
       return;
     }
-    toast.success('New contact added!!');
-    addContact(data);
-    reset();
+    try {
+      await addContact(data);
+      toast.success('New contact added!!');
+      reset();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (

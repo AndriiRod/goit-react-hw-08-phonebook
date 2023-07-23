@@ -1,21 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-export const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-
-  width: 400px;
-  margin: 20px auto;
-  max-height: calc(100vh - 40px);
-  border-radius: 16px;
-  padding: 24px;
-  overflow: hidden;
-
-  background-color: #ffffff;
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-`;
-
 export const Header = styled.header`
   border-bottom: 1px solid #eaecf0;
 `;
