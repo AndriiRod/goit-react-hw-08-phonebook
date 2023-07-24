@@ -9,6 +9,7 @@ export const authApi = createApi({
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
+
       return headers;
     },
   }),
@@ -32,6 +33,7 @@ export const authApi = createApi({
     }),
     getCurrentUser: builder.query({
       query: _ => '/users/current',
+
       providesTags: ['auth'],
     }),
 

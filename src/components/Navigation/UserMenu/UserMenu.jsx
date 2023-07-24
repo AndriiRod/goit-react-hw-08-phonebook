@@ -3,20 +3,21 @@ import { logOutLocal } from 'redux/auth/tokenSlice';
 import { useDispatch } from 'react-redux';
 import { useLogOutMutation } from 'redux/auth';
 import { useGetCurrentUserQuery } from 'redux/auth';
-import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/auth/tokenSlice';
+
+import { useState } from 'react';
 
 const UserMenu = () => {
-  const token = useSelector(selectToken);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logOut] = useLogOutMutation();
-  const { data } = useGetCurrentUserQuery(null, { skip: !token });
+  const { data } = useGetCurrentUserQuery(null, { skip: isLoggedOut });
 
   const handleLogOut = async () => {
+    setIsLoggedOut(true);
     await logOut();
     dispatch(logOutLocal());
-    navigate('/log');
+    navigate('/');
   };
   return (
     <div>
